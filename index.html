@@ -5,8 +5,39 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="./styles.css" />
-        <title>Book Search!</title>
+        <title>Book search</title>
     </head>
-    <body></body>
+    <body>
+        <header>
+            <h1>Book search!</h1>
+            <p></p>
+        </header>
+        <main>
+            <div class="input-box">
+                <div>
+                    <input type="text" id="searchBar" />
+                    <button>search</button>
+                </div>
+                <div class="input-box__search-options">
+                    Search by:
+                    <label for="bookName">
+                        Book name
+                        <input type="checkbox" id="bookName" />
+                    </label>
+                    <label for="author">
+                        Author
+                        <input type="checkbox" id="author" />
+                    </label>
+                    <label for="year">
+                        Year
+                        <input type="range" id="year" />
+                    </label>
+                </div>
+            </div>
+            <div class="container">
+                <img src="" />
+            </div>
+        </main>
+    </body>
     <script src="./script.js" type="module"></script>
 </html>
