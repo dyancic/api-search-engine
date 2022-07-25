@@ -1,25 +1,34 @@
-import { getData } from "./modules-partials/functions.js";
+import { getData, createCard, sortData } from "./modules-partials/functions.js";
 
 const cardContainer = document.querySelector(".container");
 const input = document.getElementById("searchBar");
 const btn = document.querySelector("button");
+let currentSearch;
 
 const searchEvent = async (searchTerms) => {
-    const data = await getData(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchTerms
-            .split(" ")
-            .join("+")}`,
+    if (input.value === "") {
+        cardContainer.innerText = "Please enter a search term...";
+        return;
+    }
+    const searchQuery = document.querySelector(
+        'input[name = "search"]:checked',
     );
-    console.log(data);
-    data.items.forEach((book) => {
-        const date = book.volumeInfo.publishedDate.split("-");
-        const year = date[0];
-        const author = book.volumeInfo.authors[0];
-        cardContainer.innerHTML += `<div class="card"><img src="${book.volumeInfo.imageLinks.thumbnail}"><p class="card__title">${book.volumeInfo.title}</p><p class="card__author">${author}</p><p class="card__year">${year}</p></div>`;
-    });
+    const data = await getData(
+        `https://www.googleapis.com/books/v1/volumes?q=${
+            searchQuery.id
+        }:${searchTerms.split(" ").join("+")}&maxResults=40`,
+    );
+    cardContainer.innerHTML = "";
+    data.totalItems < 1
+        ? (cardContainer.innerText = "no results found")
+        : (currentSearch = sortData(data.items, cardContainer));
 };
 
 btn.addEventListener("click", () => {
     cardContainer.innerHTML = "";
     searchEvent(input.value);
+});
+
+window.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") searchEvent(input.value);
 });

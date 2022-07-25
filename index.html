@@ -14,30 +14,44 @@
         </header>
         <main>
             <div class="input-box">
-                <div>
-                    <input type="text" id="searchBar" />
-                    <button>search</button>
+                <div class="input-box__search">
+                    <input type="text" id="searchBar" class="input-box__bar" />
+                    <button class="input-box__btn">search</button>
                 </div>
                 <div class="input-box__search-options">
                     Search by:
-                    <label for="bookName">
-                        Book name
-                        <input type="checkbox" id="bookName" />
-                    </label>
-                    <label for="author">
-                        Author
-                        <input type="checkbox" id="author" />
-                    </label>
-                    <label for="year">
-                        Year
-                        <input type="range" id="year" />
-                    </label>
+                    <div class="input-box__radios">
+                        <label for="intitle">
+                            Title
+                            <input
+                                type="radio"
+                                id="intitle"
+                                name="search"
+                                checked
+                            />
+                        </label>
+                        <label for="inauthor">
+                            Author
+                            <input type="radio" id="inauthor" name="search" />
+                        </label>
+                        <label for="inpublisher">
+                            Publisher
+                            <input
+                                type="radio"
+                                id="inpublisher"
+                                name="search"
+                            />
+                        </label>
+                        <label for="subject">
+                            Subject
+                            <input type="radio" id="subject" name="search" />
+                        </label>
+                    </div>
                 </div>
             </div>
-            <div class="container">
-                <img src="" />
-            </div>
+            <div class="container"></div>
         </main>
+        <footer>Made by Daniel Yancic</footer>
     </body>
     <script src="./script.js" type="module"></script>
 </html>
